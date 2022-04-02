@@ -110,7 +110,7 @@ canvas.addEventListener("mouseup", (e) => {
 })
 
 undo.addEventListener("click", (e) => {
-    if (track > 0) track--;
+    if (track > 0) track--
     // track action
     let data = {
         trackValue: track,
