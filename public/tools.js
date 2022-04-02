@@ -107,7 +107,6 @@ function dragAndDrop(stickyCont){
       
         stickyCont.style.position = 'absolute';
         stickyCont.style.zIndex = 1000;
-        // document.body.append(stickyCont);
       
         moveAt(event.pageX, event.pageY);
       

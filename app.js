@@ -12,8 +12,6 @@ let server = app.listen(port , () =>{
 let io = socket(server);
 
 io.on("connection", (socket) =>{
-    console.log("Made Socket Connection");
-
     //data recieved
     socket.on("beginPath", (data) => {
         //transfer data to all other connected computers

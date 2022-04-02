@@ -31,12 +31,6 @@ tool.strokeStyle = pencilColor;
 
 canvas.addEventListener("mousedown", (e) => {
     mouseDown = true;
-    // startPath({
-    //     x : e.clientX,
-    //     y : e.clientY,
-    //     color : eraserFlag ? eraserColor : pencilColor,
-    //     width : eraserFlag ? eraserWidth : pencilWidth
-    // });
     let data = {
         x : e.clientX,
         y : e.clientY,
@@ -57,12 +51,7 @@ canvas.addEventListener("mousemove", (e) =>{
         socket.emit("drawLine", data);
     }
 })
-// canvas.addEventListener("mouseup", (e) =>{
-//     mouseDown = false;
-//     let url = canvas.toDataURL();
-//     undoRedoTracker.push(url);
-//     track = undoRedoTracker.length - 1;
-// })
+
 
 function startPath(strokeObj){
     tool.strokeStyle = strokeObj.color;
@@ -112,46 +101,6 @@ download.addEventListener("click", (e) =>{
     a.click();
 
 })
-
-// redo.addEventListener("click", (e) =>{
-//     if(track < undoRedoTracker.length - 1) track++;
-
-//     let trackObj = {
-//         trackValue : track,
-//         undoRedoTracker
-//     }
-//     undoRedoCanvas(trackObj);
-
-   
-// })
-
-// undo.addEventListener("click", (e) =>{
-//     // console.log("in undo");
-//     // console.log(undoRedoTracker);
-//     // console.log(track);
-//     if(track > 0) track--;
-//     let trackObj = {
-//         trackValue : track,
-//         undoRedoTracker
-//     }
-//     undoRedoCanvas(trackObj);
-// })
-
-// function undoRedoCanvas(trackObj) {
-//     track = trackObj.trackValue;
-//     undoRedoTracker = trackObj.undoRedoTracker;
-
-//     let url = undoRedoTracker[track];
-//     let img = new Image(); // new image reference element
-//     img.src = url;
-//     img.onload = function () {
-//         tool.drawImage(img, 0, 0, canvas.width, canvas.height);
-//     }
-// }
-
-
-
-
 canvas.addEventListener("mouseup", (e) => {
     mouseDown = false;
 
@@ -169,7 +118,6 @@ undo.addEventListener("click", (e) => {
         undoRedoTracker
     }
     socket.emit("undoRedo",data);
-    // undoRedoCanvas(data);
 })
 redo.addEventListener("click", (e) => {
     if (track < undoRedoTracker.length-1) track++;
@@ -179,7 +127,6 @@ redo.addEventListener("click", (e) => {
         undoRedoTracker
     }
     socket.emit("undoRedo",data);
-    // undoRedoCanvas(data);
 })
 
 function undoRedoCanvas(trackObj) {
